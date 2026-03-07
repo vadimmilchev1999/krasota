@@ -1,0 +1,48 @@
+Uri: https://fonts.googleapis.com/css2?family=Pacifico&display=swap
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/pacifico/v23/FwZY7-Qmy14u9lezJ96A.ttf
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\s\pacifico\v23\FwZY7-Qmy14u9lezJ96A.ttf
+Content Type: font/ttf
+
+Uri: https://womens-day-deargift.vercel.app/assets/buomphai.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\buomphai.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/buomtrai.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\buomtrai.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/images/characters/bearflower.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\images\characters\bearflower.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/images/characters/bearwait.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\images\characters\bearwait.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/images/icons/couple.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\images\icons\couple.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/images/letters/cupidletter.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\images\letters\cupidletter.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/images/letters/letterimage.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\images\letters\letterimage.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/assets/nenthugocduoi.png
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\assets\nenthugocduoi.png
+Content Type: image/png
+
+Uri: https://womens-day-deargift.vercel.app/detect-devtools.js
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\detect-devtools.js
+Content Type: application/javascript
+
+Uri: https://womens-day-deargift.vercel.app/index.html?50bbfaeb61587746
+File Name: C:\Downloaded Web Sites\womens-day-deargift.vercel.app\index.html
+Content Type: text/html
+

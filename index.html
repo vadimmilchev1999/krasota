@@ -44,7 +44,7 @@
         background-color: #000000;
         color: white;
         font-family: "Pacifico", cursive;
-        /* Safe-area cho màn notch / home indicator */
+        /* Safe-area / home indicator */
         padding-top: env(safe-area-inset-top, 0px);
         padding-bottom: env(safe-area-inset-bottom, 0px);
       }
@@ -227,7 +227,7 @@
           opacity: 0;
         }
       }
-      /* Cupid letter overlay (kiểu cupid bay) */
+      /* Cupid letter overlay */
       #cupid-letter-overlay {
         position: fixed;
         top: 0;
@@ -340,7 +340,7 @@
       #cupid-letter-frame .letter-content::-webkit-scrollbar {
         display: none;
       }
-      /* Ảnh trong thư — kiểu polaroid lãng mạn, xuất hiện mượt */
+      /* polaroid  */
       #cupid-letter-frame .letter-image-wrap {
         margin-top: 1.25rem;
         text-align: center;
@@ -402,7 +402,7 @@
           opacity: 0;
         }
       }
-      /* Bướm trái: đậu ở góc trên-trái của lá thư (ngoài viền) */
+      /* di */
       #cupid-letter-frame .letter-butterfly-left {
         position: absolute;
         top: 0;
@@ -417,7 +417,7 @@
         object-fit: contain;
         filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.2));
       }
-      /* Bướm phải: đậu ở góc trên-phải của lá thư (ngoài viền) */
+      /* ti */
       #cupid-letter-frame .letter-butterfly-right {
         position: absolute;
         top: 0;
@@ -879,12 +879,12 @@
     <canvas id="webglCanvas"></canvas>
 
     <!-- ================================================================
-         APP CONFIG — Chỉnh sửa các giá trị tại đây
+         APP CONFIG
          ================================================================ -->
     <script>
-      // Config mặc định (fallback khi không có dữ liệu từ backend)
+      // Config backend
       window.DEFAULT_APP_CONFIG = {
-        // ── Thông tin ứng dụng ──────────────────────────────────────────
+        // ── Trr ──────────────────────────────────────────
         appTitle: "Beloved eyes 🖤",
         appIcon: "assets/images/icons/couple.png",
 
@@ -893,7 +893,7 @@
         passcodeTitle: "Если меня спросят, что такое красота?",
         passcodeSubtitle: "Я покажу твои глаза",
 
-        // ── Chữ morph hạt (theo thứ tự hiển thị) ───────────────────────
+        // ── Crr ───────────────────────
         morphTexts: [
           "Поздравляю",
           "С днём",
@@ -908,10 +908,10 @@
           "<3",
         ],
 
-        // ── Ảnh morph thành hạt ─────────────────────────────────────────
+        // ── morph ─────────────────────────────────────────
         particleImage: "assets/pngegg.png",
 
-        // ── Ảnh quả cầu sphere ──────────────────────────────────────────
+        // ── sphere ──────────────────────────────────────────
         sphereImages: [
           "assets/1.png",
           "assets/2.png",
@@ -942,27 +942,27 @@
           "assets/27.png",
         ],
 
-        // ── Nội dung lá thư ─────────────────────────────────────────────
+        // ── www ─────────────────────────────────────────────
         letter: {
           text: "Даже если звезды упадут с неба, \n\nУлыбка твоих глаз по прежнему будет для меня самым тёплым ориентиром \n\nПусть этот свет никогда не гаснет\n\nБудь счастлива, красота 🖤",
           image: "",
           caption: "♥",
         },
 
-        // ── Nhạc nền ────────────────────────────────────────────────────
+        // ── Neq ────────────────────────────────────────────────────
         bgMusic: "assets/music/bgmucsic.mp3",
         bgVolume: 0.55,
       };
 
-      // Chuẩn hóa luồng lấy config:
-      // - preview=1  -> lấy từ localStorage (editor)
-      // - ?<websiteId> -> gọi API womenday
-      // - không gì cả -> dùng DEFAULT_APP_CONFIG
+      // config:
+      // - localStorage (editor)
+      // - API womenday
+      // - DEFAULT_APP_CONFIG
       (function () {
         const params = new URLSearchParams(location.search);
         const preview = params.get("preview");
 
-        // Preview từ editor
+        // Preview
         if (preview === "1") {
           try {
             var s = localStorage.getItem("TEST2_CONFIG");
@@ -977,7 +977,7 @@
           }
         }
 
-        // Website thật: query dạng ?<websiteId> (chỉ lấy segment đầu, bỏ phần Zalo/UTM phía sau)
+        // Website
         var rawSearch = window.location.search || "";
         var websiteId = "";
         if (rawSearch && rawSearch !== "?preview=1") {
@@ -996,7 +996,7 @@
                 window.APP_CONFIG = data.data;
                 return window.APP_CONFIG;
               }
-              // Hết hạn hoặc không tồn tại
+              // Heq
               const expired = data && data.expired;
               const msg =
                 (data && data.message) ||
@@ -1014,14 +1014,14 @@
               throw new Error(msg);
             } catch (err) {
               console.error("Ошибка загрузки конфигурации", err);
-              // Trả về reject để module JS có thể dừng lại
+              // Teeq
               throw err;
             }
           })();
           return;
         }
 
-        // Trường hợp không có websiteId: dùng config mặc định
+        // wev
         if (!window.APP_CONFIG) {
           window.APP_CONFIG = window.DEFAULT_APP_CONFIG;
         }
@@ -1050,7 +1050,7 @@
       import { createNoise3D, createNoise4D } from "simplex-noise";
 
       (async () => {
-        // Đọc config + feature flags (chờ nếu đang load từ API)
+        // api
         let cfg;
         try {
           cfg = await (window.APP_CONFIG_PROMISE ||
@@ -1059,7 +1059,7 @@
             ));
         } catch (e) {
           console.error("Не удалось загрузить конфиг", e);
-          // Thường là website hết hạn hoặc không tồn tại -> body đã được thay bằng thông báo, nên không chạy tiếp.
+          // web
           return;
         }
 
@@ -1136,7 +1136,7 @@
           }
         }
 
-        // Feature flags — mặc định bật (=== true để opt-in, !== false để opt-out)
+        // Feature flags
         const enablePasscode = cfg.enablePasscode !== false; // default: bật
         const enableMorphEffect = cfg.enableMorphEffect !== false; // default: bật
         const enableSphere = cfg.enableSphere !== false; // default: bật
@@ -1191,7 +1191,7 @@
         const flowVec = new THREE.Vector3();
         const currentVec = new THREE.Vector3();
 
-        /** Lấy vị trí + màu từ ảnh: độ phân giải cao, màu chính xác, chi tiết nét hơn. */
+        /** Lay */
         function generateFromImage(img, count, size) {
           let w = img.naturalWidth || img.width;
           let h = img.naturalHeight || img.height;
@@ -1271,7 +1271,7 @@
           return { positions: points, colors };
         }
 
-        /** Tạo vị trí hạt từ chữ. Vẽ chữ lên canvas rồi lấy mẫu pixel. Có giới hạn chiều ngang, dài thì xuống dòng. */
+        /** Tar*/
         function generateFromText(text, count, size) {
           if (!text || !text.trim()) return null;
           const w = 800;
@@ -1562,16 +1562,16 @@
           isInitialized = true;
           animate();
 
-          // Rẽ nhánh theo feature flags
+          // feature flags
           if (enableMorphEffect) {
             prepareAndWait(); // morph hạt → sphere (nếu enableSphere) → letter (nếu enableLetter)
           } else if (enableSphere) {
-            startSpherePhase(); // bỏ morph, vào thẳng sphere
+            startSpherePhase(); // sphere
           } else if (enableLetter) {
-            // Chỉ có lá thư: cho phong thư bay lên ngay
+            // Cgz
             startCupidLetterSequence();
           }
-          // nếu cả ba đều tắt: chỉ render scene tối giản (không có gì xảy ra)
+          // xr
         }
 
         function setupPostProcessing() {
@@ -1615,15 +1615,15 @@
         const BACKGROUND_SCATTER_COUNT = 5000;
         const SEQUENCE_HOLD_MS = 1000;
         const MORPH_WAIT_MS = 2200;
-        /** Thời gian ảnh overlay fade từ mờ → rõ (ms). */
+        /** eeq */
         const MORPH_OVERLAY_FADE_MS = 1200;
-        /** Thời gian giữ ảnh hiển thị trước khi nổ (ms). */
+        /** Tss */
         const MORPH_OVERLAY_HOLD_MS = 3800;
 
         let _preloadedImg = null;
-        /** Mesh ảnh đè lên sau khi 80k hạt tạo xong (thay cho phase 280k). */
+        /** zxc. */
         let morphImageOverlay = null;
-        /** Thời điểm bắt đầu fade-in overlay (để animate() tăng opacity dần). */
+        /** xcv */
         let morphOverlayFadeStartTime = null;
 
         function sleep(ms) {
@@ -1631,9 +1631,9 @@
         }
 
         /**
-         * Tạo plane ảnh trong scene 3D trên layer riêng (layer 1).
-         * Bloom chỉ chạy layer 0 (hạt), sau đó renderer vẽ thêm layer 1 không qua bloom
-         * → ảnh hiển thị đúng màu, không lóa, đúng vị trí với hạt.
+         * ds).
+         * Bloom ds
+         * → ds
          */
         function createMorphImageOverlay(img) {
           const w = img.naturalWidth || img.width;
@@ -1643,7 +1643,7 @@
           const planeW = aspect >= 1 ? size : size * aspect;
           const planeH = aspect >= 1 ? size / aspect : size;
 
-          // Dùng canvas để render ảnh đủ kích thước, tránh mất nét do texture upload
+          // Dasd
           const srcW = img.naturalWidth || img.width;
           const srcH = img.naturalHeight || img.height;
           const offscreen = document.createElement("canvas");
@@ -1656,11 +1656,11 @@
 
           const geometry = new THREE.PlaneGeometry(planeW, planeH, 1, 1);
           const texture = new THREE.CanvasTexture(offscreen);
-          texture.generateMipmaps = false; // tắt mipmap → không bị mờ do level blend
+          texture.generateMipmaps = false; // asd
           texture.minFilter = THREE.LinearFilter;
           texture.magFilter = THREE.LinearFilter;
           texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-          texture.colorSpace = THREE.SRGBColorSpace; // giữ màu chính xác
+          texture.colorSpace = THREE.SRGBColorSpace; // zz
           texture.needsUpdate = true;
           const material = new THREE.MeshBasicMaterial({
             map: texture,
@@ -1672,9 +1672,9 @@
           });
           const mesh = new THREE.Mesh(geometry, material);
           mesh.position.set(0, 0, 0);
-          mesh.lookAt(camera.position); // xoay mặt phẳng về phía camera → không bị méo perspective
+          mesh.lookAt(camera.position); 
           mesh.renderOrder = 10;
-          // layer 1 → bloom pass không thấy, renderer thứ hai mới vẽ
+          // layer
           mesh.layers.set(1);
           scene.add(mesh);
           return mesh;
@@ -1693,7 +1693,7 @@
           morphImageOverlay = null;
         }
 
-        /** Tạo 5000 hạt nền rải đều (thêm riêng, không lấy từ 80k). */
+        /** 5000. */
         function createBackgroundScatterLayer() {
           const count = BACKGROUND_SCATTER_COUNT;
           const positions = new Float32Array(count * 3);
@@ -1766,7 +1766,7 @@
           scene.add(backgroundParticleSystem);
         }
 
-        /** Tạo hạt rải ngẫu nhiên trong không gian (80k). + 5k nền riêng. */
+        /** T7667 */
         function initScatterParticles() {
           const count = AUTOPLAY_TEXT_COUNT;
           const positions = new Float32Array(count * 3);
@@ -1812,7 +1812,7 @@
           }
         }
 
-        /** Tải trước font + ảnh, tạo scatter, rồi hiện nút giữ */
+        /** T789 */
         async function prepareAndWait() {
           await document.fonts.load('140px "Pacifico"');
           const imgSrc =
@@ -1835,7 +1835,7 @@
           initScatterParticles();
           isScatterPhase = true;
 
-          // setup nút giữ — Android: chạm 2 lần (lần 2 phát nhạc + chạy); iOS: ấn giữ 1s
+          // setup
           const wrap = document.getElementById("start-wrap");
           const ringFill = document.getElementById("ring-fill");
           const startLabel = document.getElementById("start-label");
@@ -1947,7 +1947,7 @@
           }
 
           if (_preloadedImg) {
-            // ── Có ảnh: morph chữ → ảnh 80k hạt ──
+            // ── jhg ──
             const imgLow = generateFromImage(
               _preloadedImg,
               AUTOPLAY_TEXT_COUNT,
@@ -1965,13 +1965,13 @@
             }
             await sleep(MORPH_WAIT_MS + 500);
 
-            // Hiển thị ảnh 2D đè lên canvas (không qua bloom → nét, không lóa)
+            // Hv
             isMorphing = false;
             morphImageOverlay = createMorphImageOverlay(_preloadedImg);
             morphOverlayFadeStartTime = clock.getElapsedTime();
             await sleep(MORPH_OVERLAY_FADE_MS + MORPH_OVERLAY_HOLD_MS);
           } else {
-            // ── Không có ảnh: chờ ngắn rồi nổ luôn ──
+            // ── gfh ──
             await sleep(600);
           }
 
@@ -1984,7 +1984,7 @@
           }
         }
 
-        let isScatterPhase = false; // true khi đang ở trạng thái hạt trôi nổi ban đầu
+        let isScatterPhase = false; // true kh
 
         // ── Explosion ──────────────────────────────────────────────────────
         let isExploding = false;
@@ -2084,14 +2084,14 @@
           if (cupidLetterState === "flying") updateCupidFly();
 
           if (spPhase) {
-            // Sphere phase: bypass composer/bloom hoàn toàn để màu ảnh hiển thị đúng như gốc
+            // Sphere phase: bypass composer/bloom
             renderer.render(scene, camera);
           } else if (morphImageOverlay) {
-            // Selective bloom: bloom chỉ chạy layer 0 (hạt), ảnh (layer 1) render sau không qua bloom
+            // Selective bloom
             camera.layers.disable(1);
             composer.render(deltaTime);
             camera.layers.enable(1);
-            // Vẽ layer 1 lên trên không qua bloom
+            // qua bloom
             camera.layers.disable(0);
             renderer.autoClear = false;
             renderer.render(scene, camera);
@@ -2147,7 +2147,7 @@
             return;
           }
 
-          // drift nhẹ cho hạt scatter (chỉ khi chưa bắt đầu sequence, isScatterPhase)
+          // sequence, isScatterPhase
           const driftAmt = isScatterPhase ? 0.25 : 0;
           let needsEffectStrengthReset = false;
           for (let i = 0; i < particleCount; i++) {
@@ -2519,7 +2519,7 @@
                 .getElementById("btn-flying-corner")
                 .classList.add("visible");
             } else {
-              // Ảnh bay tắt + thư bật: click lần 2 vào quả cầu → chuyển thẳng sang hiện thư
+              
               const flash = document.createElement("div");
               flash.style.cssText =
                 "position:fixed;inset:0;background:radial-gradient(circle,rgba(255,105,180,0.8) 0%,transparent 70%);pointer-events:none;z-index:1000;animation:flashFade 1s ease-out forwards;";
@@ -2703,8 +2703,7 @@
         }
 
         async function startSpherePhase() {
-          // Nếu trước đó có hiệu ứng hạt thì chờ 3.4s để xem explosion,
-          // còn nếu bỏ morph (chỉ quả cầu) thì không cần chờ.
+          //  explosion,
           if (enableMorphEffect) {
             await sleep(3400);
           } else {
@@ -2715,7 +2714,7 @@
           overlay.style.opacity = "1";
           await sleep(400);
 
-          // cleanup particles (main + nền 5k) và overlay ảnh morph
+          // cleanup particles 
           removeMorphImageOverlay();
           if (particleSystem) {
             scene.remove(particleSystem);
@@ -3111,7 +3110,7 @@
         // ════════════════════════════════════════════════════════════════
 
         // ════════════════════════════════════════════════════════════════
-        // Áp dụng config vào head (title, icon, passcode UI)
+        // (title, icon, passcode UI)
         // ════════════════════════════════════════════════════════════════
         (function applyCfgToDOM() {
           const title =
@@ -3139,7 +3138,7 @@
         })();
 
         // ════════════════════════════════════════════════════════════════
-        // PWA Manifest (Android only, iOS dùng apple-touch-icon)
+        // PWA Manifest (Android only, iOS apple-touch-icon)
         // ════════════════════════════════════════════════════════════════
         (function () {
           var isIOS =
@@ -3187,7 +3186,7 @@
         })();
 
         // ════════════════════════════════════════════════════════════════
-        // NHẠC NỀN
+        // Nu8
         // ════════════════════════════════════════════════════════════════
         const bgMusic = new Audio(cfg.bgMusic || "assets/music/bgmucsic.mp3");
         bgMusic.loop = true;
@@ -3226,13 +3225,13 @@
         const bearLeft = document.getElementById("bearLeft");
         const bearRight = document.getElementById("bearRight");
 
-        // Nếu tắt passcode: ẩn màn hình mật khẩu, khởi động thẳng
+        
         if (!enablePasscode) {
           passcodeScreen.style.display = "none";
-          // Nhạc sẽ phát khi user giữ nút Start (startHold) – tránh autoplay bị chặn trên mobile
+          // autoplay mobile
           init();
         } else {
-          // Hiện passcode ngay khi tải trang
+          // passcode
           passcodeScreen.classList.add("visible");
         }
 
@@ -3263,7 +3262,7 @@
 
         function openGift() {
           passcodeBears.classList.add("show-couple");
-          // Nhạc chỉ phát khi user giữ nút "Giữ để bắt đầu", không phát khi mở khóa
+          // Ngg
           setTimeout(() => {
             passcodeScreen.classList.add("hiding");
             setTimeout(() => {
@@ -3298,7 +3297,7 @@
             updateBearPosition();
           });
 
-        // Chặn pinch zoom trên passcode
+        // C passcode
         passcodeScreen.addEventListener(
           "touchmove",
           (e) => {
@@ -3307,7 +3306,7 @@
           { passive: false },
         );
 
-        // Listener cho click phong bì lá thư (hoạt động cả khi không có sphere)
+        // Listener
         document
           .getElementById("letter-envelope-img")
           ?.addEventListener("click", handleLetterEnvelopeClick);

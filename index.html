@@ -1137,12 +1137,12 @@
         }
 
         // Feature flags
-        const enablePasscode = cfg.enablePasscode !== false; // default: bật
-        const enableMorphEffect = cfg.enableMorphEffect !== false; // default: bật
+        const enablePasscode = cfg.enablePasscode !== false; 
+        const enableMorphEffect = cfg.enableMorphEffect !== false; 
         const enableSphere = cfg.enableSphere !== false; // default: bật
-        const enableSphereFlyingImages = cfg.enableSphereFlyingImages !== false; // default: bật
-        const enableLetter = cfg.enableLetter !== false; // default: bật
-        const enableWebsiteInfo = cfg.enableWebsiteInfo !== false; // default: bật
+        const enableSphereFlyingImages = cfg.enableSphereFlyingImages !== false; 
+        const enableLetter = cfg.enableLetter !== false; 
+        const enableWebsiteInfo = cfg.enableWebsiteInfo !== false; 
 
         let scene, camera, renderer, controls, clock;
         let composer, bloomPass;
@@ -1564,7 +1564,7 @@
 
           // feature flags
           if (enableMorphEffect) {
-            prepareAndWait(); // morph hạt → sphere (nếu enableSphere) → letter (nếu enableLetter)
+            prepareAndWait(); // morph
           } else if (enableSphere) {
             startSpherePhase(); // sphere
           } else if (enableLetter) {
